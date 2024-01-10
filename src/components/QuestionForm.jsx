@@ -32,7 +32,6 @@ const QuestionForm = ({addQuestion}) => {
         });
 
         Swal.fire({
-            position: "top-end",
             icon: "success",
             title: "Pregunta añadida correctamente",
             showConfirmButton: false,

@@ -4,9 +4,10 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import {useState} from "react";
 import QuestionForm from "./components/QuestionForm";
 import CreatedQuestions from "./components/CreatedQuestions";
+import Swal from "sweetalert2";
 
 function App() {
-  const [currentQuestionId, setCurrentQuestionId] = useState(0);
+  const [currentQuestionId, setCurrentQuestionId] = useState(1);
   const [questions, setQuestions] = useState([]);
 
   const addQuestion = (newQuestion) => {
@@ -16,8 +17,21 @@ function App() {
   };
 
   const deleteQuestion = (question) => {
-    let updatedQuestions = questions.filter(element => element.id !== question.id);
-    setQuestions([...updatedQuestions]);
+    Swal.fire({
+      title: `¿De verdad quieres eliminar la pregunta nº${question.id}?`,
+      text: `(${question.text})`,
+      showCancelButton: true,
+      confirmButtonText: "Eliminar",
+      confirmButtonColor: "red",
+      cancelButtonText: "Conservar",
+      cancelButtonColor: "blue"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        let updatedQuestions = questions.filter(element => element.id !== question.id);
+        setQuestions([...updatedQuestions]);
+        Swal.fire("La pregunta ha sido eliminada", "", "success");
+      }
+    });
   };
 
   return (

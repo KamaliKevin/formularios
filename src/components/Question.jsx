@@ -7,7 +7,7 @@ const Question = ({question, deleteQuestion}) => {
             <button type="button" className="align-baseline btn-close " aria-label="Close"
                     onClick={() => deleteQuestion(question)}></button>
             <div className="card-body">
-                <h5 className="card-title">Pregunta nº{id + 1}</h5>
+                <h5 className="card-title">Pregunta nº{id}</h5>
                 <h6 className="card-subtitle mb-2 text-body-secondary">{text}</h6>
                 <div className="btn-group-vertical" role="group" aria-label="Vertical radio toggle button group">
                     <input type="radio" className="btn-check" name="btn-answer" id={`${id}vbtn-radio1"`}
